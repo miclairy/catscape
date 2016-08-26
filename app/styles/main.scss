@@ -1,0 +1,54 @@
+$icon-font-path: '../fonts/';
+
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+html {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+form{
+  padding-top: 2%;
+  padding-bottom: 5%;
+
+}
+
+input[type=text] {
+    width: 30%;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+
+}
+
+input[type=text]:focus {
+    width: 50%;
+}
+
+#middle {
+
+  margin: auto;
+  width: 50%;
+  top: 40%;
+}
+
+h1 {
+  padding-top: 10%;
+  font-size: 84px;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
