@@ -58,7 +58,7 @@ gulp.task('lint:test', () => {
 });
 
 gulp.task('html', ['styles', 'scripts'], () => {
-  return gulp.src('*.html')
+  return gulp.src('app/*.html')
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.cssnano({safe: true, autoprefixer: false})))
@@ -153,7 +153,7 @@ gulp.task('serve:test', ['scripts'], () => {
 gulp.task('wiredep', () => {
   gulp.src('app/styles/*.scss')
     .pipe(wiredep({
-      ignorePath: /^(\.\.\/)+/
+      ignorePath: /^(\.\.\/)/
     }))
     .pipe(gulp.dest('app/styles'));
 
