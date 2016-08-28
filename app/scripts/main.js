@@ -18,13 +18,21 @@ function getPhotoRequest(input){
                 photos.push(photoUrl);
                 console.log("i, data in add photo ",i, data.id, photoUrl);
                 sizesUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=a912268eed1f9b50f37faf7b243ab7e4&photo_id="+ data.id +"&format=json&nojsoncallback=1"; 
+                count = 1;
                 $.getJSON(sizesUrl, function(size){
                     console.log("grab size", size, photos[i]);
                     $.each(size.sizes.size, function(j, sizeResults){
-                        if (sizeResults.label == "Large Square"){
-                            $("#photo").append('<p><a href="' + photos[i] + '"><img class=photo src="' + sizeResults.source + '"/></a></p>');  
-                        }
                         
+                       if (sizeResults.label == "Large Square"){
+                            console.log(count, count%10);
+                            
+                            if (count%11 == 0){
+                                $("#photo").append('</div><div class="row"><div class="col-sm-1"><p><a href="' + photos[i] + '"><img class=photo src="' + sizeResults.source + '"/></a></p></div>');
+                            } else {
+                                $("#photo").append('<div class="col-sm-1"><p><a href="' + photos[i] + '"><img class=photo src="' + sizeResults.source + '"/></a></p></div>');
+                            }
+                            count++;
+                        }
                    })
                  })
             });
@@ -34,17 +42,25 @@ function getPhotoRequest(input){
             console.log("couldn't get data");
         }
     });
-    alert("done");
+    
 }
 
 $(document).ready(function(){
     //console.log($("#searchBox").text());
     getPhotoRequest("kitten");
-    console.log("loaded photos");
-    input = document.getElementById("searchBox").value;
-    alert(input);
+    
+      sleep(2000).then(() => {
+        
+        
+    })
+    //console.log("loaded photos");
+    //input = document.getElementById("searchBox").value;
+    //alert("done"); 
+
+    //$(".photo").remove();
+    //alert('done');
     getPhotoRequest("owl");
-    $("#search").click(getPhotoRequest());
+    //$("#search").click(getPhotoRequest());
    
 }); 
 

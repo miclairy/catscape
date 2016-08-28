@@ -22,19 +22,24 @@ html {
 form{
   padding-top: 2%;
   padding-bottom: 5%;
-
+  padding-left: 25%;
 }
 
 input[type=text] {
-    width: 30%;
+    float:left;
+    
+    width: 50%;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 
 }
 
 input[type=text]:focus {
-    width: 50%;
+    width: 60%;
+
 }
+
+
 
 #middle {
 
@@ -53,6 +58,4 @@ h2 {
   text-align: center;
 }
 
-.photo {
-  float: left;
-}
+
