@@ -8,6 +8,7 @@ function getPhotoRequest(input){
     
     .done(function (data){
         if (data.stat != "fail"){
+            $(".photo").remove();
             console.log("photo data search" , data);
             var photos = new Array();
             $.each(data.photos.photo, function(i, data){
@@ -23,8 +24,9 @@ function getPhotoRequest(input){
                         if (sizeResults.label == "Large Square"){
                             $("#photo").append('<p><a href="' + photos[i] + '"><img class=photo src="' + sizeResults.source + '"/></a></p>');  
                         }
-                    })
-                })
+                        
+                   })
+                 })
             });
 
         } else{
@@ -32,15 +34,16 @@ function getPhotoRequest(input){
             console.log("couldn't get data");
         }
     });
-
+    alert("done");
 }
 
 $(document).ready(function(){
     //console.log($("#searchBox").text());
     getPhotoRequest("kitten");
+    console.log("loaded photos");
     input = document.getElementById("searchBox").value;
     alert(input);
-    getPhotoRequest(input);
+    getPhotoRequest("owl");
     $("#search").click(getPhotoRequest());
    
 }); 
