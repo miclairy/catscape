@@ -48,19 +48,16 @@ function getPhotoRequest(input){
 $(document).ready(function(){
     //console.log($("#searchBox").text());
     getPhotoRequest("kitten");
-    
-     // sleep(2000).then(() => {
-        
-        
-    //})
-    //console.log("loaded photos");
-    //input = document.getElementById("searchBox").value;
-    //alert("done"); 
 
     //$(".photo").remove();
     //alert('done');
    // getPhotoRequest("owl");
-    //$("#search").click(getPhotoRequest());
+    $("#search").click(function(event){
+        event.preventDefault();
+        input = document.getElementById("searchBox").value;
+        alert(input); 
+        getPhotoRequest(input);
+    });
    
 }); 
 

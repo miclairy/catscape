@@ -88,7 +88,7 @@ gulp.task('fonts', () => {
 gulp.task('extras', () => {
   return gulp.src([
     'app/*.*',
-    '!app/*.html'
+    '!*.html'
   ], {
     dot: true
   }).pipe(gulp.dest('dist'));
@@ -109,7 +109,7 @@ gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
   });
 
   gulp.watch([
-    'app/*.html',
+    '*.html',
     'app/images/**/*',
     '.tmp/fonts/**/*'
   ]).on('change', reload);
