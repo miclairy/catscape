@@ -8,6 +8,8 @@ function getPhotoRequest(input){
     
     .done(function (data){
         if (data.stat != "fail"){
+            $(".picrow").remove();
+            $(".col-sm-2").remove();
             $(".photo").remove();
             console.log("photo data search" , data);
             var photos = new Array();
@@ -26,16 +28,16 @@ function getPhotoRequest(input){
                        if (sizeResults.label == "Large Square"){
                             console.log(count, count%10);
                             
-                            if (count%11 == 0){
-                                $("#photo").append('</div><div class="row"><div class="col-sm-1"><p><a href="' + photos[i] + '"><img class=photo src="' + sizeResults.source + '"/></a></p></div>');
+                            if (count%6 == 0){
+                                $("#photo").append('</div><div class="row picrow"><div class="col-sm-2"><p><a href="' + photos[i] + '"><img class=photo src="' + sizeResults.source + '"/></a></p></div>');
                             } else {
-                                $("#photo").append('<div class="col-sm-1"><p><a href="' + photos[i] + '"><img class=photo src="' + sizeResults.source + '"/></a></p></div>');
+                                $("#photo").append('<div class="col-sm-2"><p><a href="' + photos[i] + '"><img class=photo src="' + sizeResults.source + '"/></a></p></div>');
                             }
                             count++;
                         }
                    })
                  })
-            });
+            }); 
 
         } else{
             $("#photo").append('<h3>No cute photos matched :(</h3>');
@@ -55,7 +57,7 @@ $(document).ready(function(){
     $("#search").click(function(event){
         event.preventDefault();
         input = document.getElementById("searchBox").value;
-        alert(input); 
+        //alert(input); 
         getPhotoRequest(input);
     });
    
