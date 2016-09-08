@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>cat</title>
+    <title>catscape</title>
 
     <link rel="stylesheet" href="app/styles/main.css">
     
@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/1.5.0/jquery.waitforimages.min.js"></script>
 
     <script src="app/scripts/main.js"></script>
 
@@ -57,32 +58,38 @@
     </form>
   </div>
   <!--modal-->
-<!--<div class="row">
+<div class="row">
   <p><a href="" data-toggle="modal" data-target="#fullSizePhoto"><img class=photo src="https://farm8.staticflickr.com/7455/26702883663_282e808b58_q.jpg"/></a></p>
-</div>-->
-  <!--<div id="fullSizePhoto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">>
-    <div class="modal-dialog">-->
+</div>
+  <div id="fullSizePhoto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">>
+    <div class="modal-dialog">
 
       <!-- Modal content-->
-      <!--<div class="modal-content">
+      <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Photo</h4>
         </div>
-        <div class="modal-body">-->
+        <div class="modal-body" id="fill">
           <!--<p><img class=photo src="https://farm8.staticflickr.com/7570/28802637760_eec0797bd3_o.jpg"/></a></p>-->
-        <!--</div>
+        </div>
 
       </div>
 
     </div>
-  </div>-->
+  </div>
 
  
   <div class="container-fluid"  >
-    <ul class="row" id="photo">
-      <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hov static"><div class="caption"><p>this is a cute cat</p></div><img src="https://farm9.staticflickr.com/8863/28856649431_e45ba43268_q.jpg" id:"' + i + '"/></li>
-      <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hov static"><div class="caption"><p>this is another adorable kittne</p></div><img src="https://farm9.staticflickr.com/8188/28622911343_1982a4293b_q.jpg" id:"' + i + '"/></li>
+    <ul class="row" id="photos">
+      <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hov ">
+        <div class="caption"><p>this is a cute cat</p></div>
+        <a href="" class="static"><img src="https://farm9.staticflickr.com/8863/28856649431_e45ba43268_q.jpg" /></a>
+      </li>
+      <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hov static">
+        <div class="caption"><p>this is another adorable kitten</p></div>
+         <a href="" class="static"><img src="https://farm9.staticflickr.com/8188/28622911343_1982a4293b_q.jpg"/></a>
+      </li>
     </ul>
   </div>
 
