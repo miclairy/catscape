@@ -71,3 +71,30 @@ ul li img {
   cursor: pointer;
 }
 
+ 
+    .caption {
+    	display: none;
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	/*background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(images/trans-black-50.png);*/
+    	width: 70%;
+    	height: 100%;
+      padding-left: 10px;
+      padding-top: 10px;
+    }
+    .caption h3, .caption p {
+    	color: #fff;
+    	margin: 20px;
+    }
+    .caption h3 {
+    	margin: 20px 20px 10px;
+    }
+    .caption p {
+    	font-size: 1em;
+    	line-height: 1.5em;
+    	margin: 0 20px 15px;
+      background: black;
+
+    }
+
