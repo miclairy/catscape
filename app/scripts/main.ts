@@ -13,7 +13,7 @@ function getPhotoRequest(input:String) : void{
     .done(function(data: any) : void{
         if (data.stat != "fail"){
             //$(".picrow").remove();
-            $(".col-sm-2").remove();
+            //$(".col-sm-2").remove();
             $(".photo").remove();
             console.log("photo data search" , data);
             var photos:Array<String> = new Array();
@@ -40,7 +40,7 @@ function getPhotoRequest(input:String) : void{
                             
                                 console.log(count, count%6,j, sizeResults.source);                           
                             //  if (count%6 == 0){
-                                    $("#photo").append('<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hov"><div class="caption"><p>"' + titles[i] +'"</p></div><img src="' + sizeResults.source + '" id:"' + i + '"/></li>');
+                                    $("#photo").append('<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hov"><div class="caption"><p>"' + titles[i] +'"</p></div><img src="' + sizeResults.source + '" id:"' + i + '" class=photo/></li>');
                                 // } else {
                                 //     $("#photo").append('<div class="col-sm-2"><p><a href=""><img class=photo src="' + sizeResults.source + '"/></a></p></div>');
                                 // }
@@ -92,6 +92,21 @@ $(document).ready(function(){
 	    );
    
         $('.static').on('click',function(){
+            alert("you clicked the photo woop");
+            var src = $(this).attr('src');
+            var img = '<img src="https://farm3.staticflickr.com/2854/9972740276_66b3c326f1_q.jpg" class="img-responsive"/>';
+            var modal:any = $('#myModal')
+            modal.modal();
+            $('#myModal').on('shown.bs.modal', function(){
+                $('#myModal .modal-body').html(img);
+            });
+            $('#myModal').on('hidden.bs.modal', function(){
+                $('#myModal .modal-body').html('');
+            });
+        });
+
+        $('.photo').on('click',function(){
+            alert("you clicked the photo woop");
             var src = $(this).attr('src');
             var img = '<img src="https://farm3.staticflickr.com/2854/9972740276_66b3c326f1_q.jpg" class="img-responsive"/>';
             var modal:any = $('#myModal')
