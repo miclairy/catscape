@@ -19,8 +19,8 @@ function getPhotoRequest(input) {
             $.each(data.photos.photo, function (i, data) {
                 //owner = data.photos.photo[i].owner;
                 //id = data.photos.photo[i].id;
-                var photoUrl = "https://www.flickr.com/photos/" + data.owner + "/" + data.id;
-                photos.push(photoUrl);
+                // var photoUrl:string = "https://www.flickr.com/photos/" + data.owner + "/" + data.id
+                //photos.push(photoUrl);
                 //console.log("i, data in add photo ",i, data.id, photoUrl);
                 var id = data.id;
                 var photoInfoUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=09bba6751d0e8f198473cd4fc6d8512f&photo_id=" + id + "&format=json&nojsoncallback=1";
@@ -31,21 +31,29 @@ function getPhotoRequest(input) {
                     author = info.photo.owner.username;
                     var sizesUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=09bba6751d0e8f198473cd4fc6d8512f&photo_id=" + data.id + "&format=json&nojsoncallback=1";
                     $.getJSON(sizesUrl, function (size) {
+                        $.each(size.sizes.size, function (j, sizeResults) {
+                            if (sizeResults.label == "Original") {
+                                photos.push(sizeResults.source);
+                            }
+                        });
                         // console.log("grab size", size, photos[i]);
                         $.each(size.sizes.size, function (j, sizeResults) {
                             //console.log(sizeResults.label); 
                             if (sizeResults.label == "Large Square") {
                                 console.log(count, count % 6, j, sizeResults.source);
                                 //  if (count%6 == 0){
-                                $("#photos").append('<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hov "><div class="caption"><p>"' + titles[i] + '"</p></div><img class="photo" src="' + sizeResults.source + '" id:"' + i + '"/></li>');
-                                console.log($(".photo").attr("id"));
+                                $("#photos").append('<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hov "><div class="caption"><p>"' + titles[i] + '"</p></div><img class="photo" src="' + sizeResults.source + '" id="' + i.toString() + '"/></li>');
+                                //console.log( document.getElementById(i.toString()), i) ; 
                                 $('.hov').on('click', function () {
-                                    var src = $(this).attr('src');
-                                    var img = '<img src="' + sizeResults.source + '" class="img-responsive"/>';
+                                    var src = $(this).find(".photo");
+                                    var id = src.attr("id");
+                                    //id = "0";
+                                    console.log(id, photos[Number(id)]);
+                                    var img = '<img src="' + photos[Number(id)] + '" class="img-responsive"/>';
                                     var modal = $('#myModal');
                                     modal.modal();
                                     console.log($(this));
-                                    var id = $(this).attr('class');
+                                    //var id = $(this).attr('id');
                                     $(".modal-body").html(img);
                                     // $('#myModal').on('shown.bs.modal', function(){
                                     //     $('#myModal .modal-body').html(img);
@@ -108,17 +116,4 @@ $(document).ready(function () {
         modal.modal();
         $("#fill").html(img);
     });
-    // $('.photo').on('click',function(){
-    //     alert("you clicked the photo woop");
-    //     var src = $(this).attr('src');
-    //     var img = '<img src="https://farm3.staticflickr.com/2854/9972740276_66b3c326f1_q.jpg" class="img-responsive"/>';
-    //     var modal:any = $('#myModal')
-    //     modal.modal();
-    //     $('#myModal').on('shown.bs.modal', function(){
-    //         $('#myModal .modal-body').html(img);
-    //     });
-    //     $('#myModal').on('hidden.bs.modal', function(){
-    //         $('#myModal .modal-body').html('');
-    //     });
-    // });
 });
