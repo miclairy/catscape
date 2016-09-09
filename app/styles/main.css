@@ -1,8 +1,4 @@
-$icon-font-path: '../fonts/';
 
-// bower:scss
-@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-// endbower
 
 html {
     -webkit-background-size: cover;
@@ -27,7 +23,6 @@ form{
 
 input[type=text] {
     float:left;
-    
     width: 50%;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
@@ -38,8 +33,6 @@ input[type=text]:focus {
     width: 60%;
 
 }
-
-
 
 #middle {
 
@@ -63,38 +56,37 @@ ul {
   padding:0 0 0 0;
   margin:0 0 0 0;
 }
+
 ul li {
+  /*cursor: pointer;*/
   list-style:none;
   margin-bottom:25px;
 }
-ul li img {
+
+.photo {
   cursor: pointer;
 }
 
  
-    .caption {
-    	display: none;
-    	position: absolute;
-    	top: 0;
-    	left: 0;
-    	/*background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(images/trans-black-50.png);*/
-    	width: 70%;
-    	height: 100%;
-      padding-left: 10px;
-      padding-top: 10px;
-    }
-    .caption h3, .caption p {
-    	color: #fff;
-    	margin: 20px;
-    }
-    .caption h3 {
-    	margin: 20px 20px 10px;
-    }
-    .caption p {
-    	font-size: 1em;
-    	line-height: 1.5em;
-    	margin: 0 20px 15px;
-      background: black;
+.caption {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(images/trans-black-50.png);*/
+  width: 70%;
+  height: 100%;
+  padding-left: 10px;
+  padding-top: 10px;
+}
 
-    }
+.caption p {
+  color: #fff;
+  margin: 20px;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 0 20px 15px;
+  background: black;
+
+}
 

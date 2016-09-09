@@ -15,66 +15,89 @@ function getPhotoRequest(input:String) : void{
             //$(".picrow").remove();
             //$(".col-sm-2").remove();
             $(".photo").remove();
+            $(".caption").remove();
+            $(".hov").remove();
             console.log("photo data search" , data);
             var photos:Array<String> = new Array();
             var titles:Array<String> = new Array();
             $.each(data.photos.photo, function(i:number, data:any) : void{
                 //owner = data.photos.photo[i].owner;
                 //id = data.photos.photo[i].id;
-               // var photoUrl:string = "https://www.flickr.com/photos/" + data.owner + "/" + data.id
+                
                 //photos.push(photoUrl);
                 //console.log("i, data in add photo ",i, data.id, photoUrl);
-                var id:number = data.id;  
-                var photoInfoUrl:string = "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=09bba6751d0e8f198473cd4fc6d8512f&photo_id="+ id +"&format=json&nojsoncallback=1"; 
-                $.getJSON(photoInfoUrl, function(info:any): void{
-                    //console.log("info on photo", info.photo.title._content);
-                    title = info.photo.title._content;
-                    titles.push(title);
-                    author = info.photo.owner.username;
-                    var sizesUrl:string = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=09bba6751d0e8f198473cd4fc6d8512f&photo_id="+ data.id +"&format=json&nojsoncallback=1"; 
-                    $.getJSON(sizesUrl, function(size:any) : void{
-                        $.each(size.sizes.size, function(j:number, sizeResults:any) : void{
-                                if (sizeResults.label == "Original"){
-                                    photos.push(sizeResults.source);
-                            }});
-                    // console.log("grab size", size, photos[i]);
-                        $.each(size.sizes.size, function(j:number, sizeResults:any) : void{
-                        //console.log(sizeResults.label); 
+               
+                var sizesUrl:string = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=09bba6751d0e8f198473cd4fc6d8512f&photo_id="+ data.id +"&format=json&nojsoncallback=1"; 
+                $.getJSON(sizesUrl, function(size:any) : void{
+                    var id:number = data.id; 
+                    var photoUrl:string = "https://www.flickr.com/photos/" + data.owner + "/" + data.id; 
+                    var photoInfoUrl:string = "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=09bba6751d0e8f198473cd4fc6d8512f&photo_id="+ id +"&format=json&nojsoncallback=1"; 
+                    $.getJSON(photoInfoUrl, function(info:any): void{
+                        //console.log("info on photo", info.photo.title._content);
+                        title = info.photo.title._content;
+                        titles.push(title);
+                        author = info.photo.owner.username;
+                        // console.log("grab size", size, photos[i]);
+                            $.each(size.sizes.size, function(j:number, sizeResults:any) : void{
+                            console.log(id); 
 
-                            if (sizeResults.label == "Large Square"){
-                                console.log(count, count%6,j, sizeResults.source);                           
-                            //  if (count%6 == 0){
-                                $("#photos").append('<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hov "><div class="caption"><p>"' + titles[i] +'"</p></div><img class="photo" src="' + sizeResults.source + '" id="' + i.toString() + '"/></li>');
-                                //console.log( document.getElementById(i.toString()), i) ; 
-                            
-          
-                                $('.hov').on('click',function(){
-                                    var src:any = $(this).find(".photo");
-                                    var id:string = src.attr("id");
-                                    //id = "0";
-                                    console.log(id, photos[Number(id)]);
-                                    var img:string = '<img src="'  + photos[Number(id)] +  '" class="img-responsive"/>';
-                                    var modal:any = $('#myModal')
-                                    modal.modal();
-                                        console.log($(this)) ; 
-                                    //var id = $(this).attr('id');
-                                    $(".modal-body").html(img);
-                                    // $('#myModal').on('shown.bs.modal', function(){
-                                    //     $('#myModal .modal-body').html(img);
-                                    // });
-                                    // $('#myModal').on('hidden.bs.modal', function(){
-                                    //     $('#myModal .modal-body').html('');
-                                    // });
-                                });
+                                if (sizeResults.label == "Large Square"){
+                                    console.log(count, count%6,j, sizeResults.source);                           
+                                //  if (count%6 == 0){
+                                    var originalUrl:string = sizeResults.source;
+                                    $.each(size.sizes.size, function(j:number, sizeResults:any) : void{
+                                        if (sizeResults.label == "Original"){
+                                            photos.push(sizeResults.source);
+                                            originalUrl = sizeResults.source;
+                                        } else if (sizeResults.label == "Medium 640"){
+                                            photos.push(sizeResults.source);
+                                            originalUrl = sizeResults.source;
+                                        } else if (sizeResults.label == "Medium"){
+                                            photos.push(sizeResults.source);
+                                            originalUrl = sizeResults.source;
+                                        } else if (sizeResults.label == "Medium 800"){
+                                            photos.push(sizeResults.source);
+                                            originalUrl = sizeResults.source;
+                                        }
+                                    });
 
-                                $('.hov').hover(
-                                    function(){
-                                        $(this).find('.caption').show();
-                                    },
-                                    function(){
-                                        $(this).find('.caption').hide();
-                                    }
-                                );
+
+                                
+                                    $("#photos").append('<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hov "><div class="caption"><p>"' + title.replace(/^"(.*)"$/, '$1') +' \
+                                            "</p></div><img class="photo" original="' + originalUrl + '" src="' + sizeResults.source + '" url="' + photoUrl + '"/></li>');
+                                    console.log(title.replace(/^"(.*)"$/, '$1')) ; 
+                                    
+            
+                                    $('.hov').on('click',function(){
+                                        var src:any = $(this).find(".photo");
+                                        var title:any = $(this).find("p");
+                                        var url:string = src.attr("url");
+                                        //id = "0";
+                                        console.log(title.text());
+                                        var img:string = '<a href="' + url + '"><img src="'  + src.attr("original") +  '" class="img-responsive"/></a>';
+                                        var modal:any = $('#fullSizePhoto')
+                                        modal.modal();
+                                        //console.log($(this)) ; 
+                                        //var id = $(this).attr('id');
+                                        $(".modal-body").html(img);
+                                        $(".modal-title").html(title.text().replace(/^"(.*)"$/, '$1'));
+                                        // $('#myModal').on('shown.bs.modal', function(){
+                                        //     $('#myModal .modal-body').html(img);
+                                        // });
+                                        // $('#myModal').on('hidden.bs.modal', function(){
+                                        //     $('#myModal .modal-body').html('');
+                                        // });
+                                    });
+
+                                    $('.hov').hover(
+                                        function(){
+                                            console.log($(this).find('p').text);
+                                            $(this).find('.caption').show();
+                                        },
+                                        function(){
+                                            $(this).find('.caption').hide();
+                                        }
+                                    );
 
                                 // } else {
                                 //     $("#photo").append('<div class="col-sm-2"><p><a href=""><img class=photo src="' + sizeResults.source + '"/></a></p></div>');
