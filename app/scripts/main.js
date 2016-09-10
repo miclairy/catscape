@@ -45,7 +45,7 @@ function getPhotoRequest(input) {
                                         originalUrl = sizeResults.source;
                                     }
                                 });
-                                $("#photos").append('<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hov "><div class="caption"><p>"' + title.replace(/^"(.*)"$/, '$1') + ' \
+                                $("#photos").append('<li class="col-lg-2 col-md-3 col-sm-4 col-xs-5 hov "><div class="caption"><p>"' + title.replace(/^"(.*)"$/, '$1') + ' \
                                             "</p></div><img class="photo" original="' + originalUrl + '" src="' + sizeResults.source + '" url="' + photoUrl + '"/></li>');
                                 //console.log(title.replace(/^"(.*)"$/, '$1')) ; 
                                 $('.hov').on('click', function () {
