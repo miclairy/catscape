@@ -24,7 +24,7 @@ form{
 
 input[type=text] {
     float:left;
-
+    margin:auto;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 
@@ -32,10 +32,6 @@ input[type=text] {
 
 
 
-.fb-share-button{
-    padding: 20px;
-    float: right;
-}
 
 
 ul {

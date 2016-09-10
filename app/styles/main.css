@@ -35,10 +35,10 @@ input[type=text]:focus {
 
 }
 
-.fb-share-button{
-    padding: 20px;
-    float: right;
-}
+/*.fb-share-button{
+    
+    float: left;
+}*/
 
 #middle {
   margin: auto;
