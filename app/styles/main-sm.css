@@ -23,15 +23,15 @@ form{
 }
 
 input[type=text] {
-    float:left;
+    /*float:left;*/
     margin:auto;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
+
 
 }
 
-
-
+h2 h1{
+  text-align: center;
+}
 
 
 ul {
