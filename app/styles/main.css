@@ -41,9 +41,8 @@ input[type=text]:focus {
 }
 
 #middle {
-
   margin: auto;
-  width: 50%;
+
 
 }
 
@@ -64,7 +63,7 @@ ul {
 }
 
 ul li {
-  /*cursor: pointer;*/
+  cursor: pointer;
   list-style:none;
   margin-bottom:25px;
 }
