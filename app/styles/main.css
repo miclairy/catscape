@@ -5,6 +5,7 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    background-color: #f3ecf9;
 }
 
 
@@ -34,6 +35,11 @@ input[type=text]:focus {
 
 }
 
+.fb-share-button{
+    padding: 20px;
+    float: right;
+}
+
 #middle {
 
   margin: auto;
@@ -42,7 +48,7 @@ input[type=text]:focus {
 }
 
 h1 {
-  padding-top: 5%;
+  /*padding-top: 5%;*/
   font-size: 84px;
   text-align: center;
 }
@@ -89,4 +95,11 @@ ul li {
   background: black;
 
 }
+
+.footer{
+    padding: 25px;
+    background-color: #f3ecf9;
+    font-size: 1.2em;
+}
+
 
